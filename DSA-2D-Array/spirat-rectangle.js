@@ -58,4 +58,5 @@ const solve = (A, B, C) => {
   return result;
 };
 
-console.log(solve([1, 2, 3, 4, 5, 6], 2, 3));
+// console.log(solve([1, 2, 3, 4, 5, 6], 2, 3));
+console.log(solve([1, 2, 3, 4, 5, 1, 2, 3, 4, 5], 1, 10));
