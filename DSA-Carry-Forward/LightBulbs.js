@@ -9,13 +9,13 @@
 // Note: 0 represents the bulb is off and 1 represents the bulb is on.
 
 function solve(A) {
-  const n = A.length;
-  let swaps = 0;
-  if (A[0] === 0) swaps++;
-  for (let i = 1; i < n; i++) {
-    if (A[i] !== A[i - 1]) swaps++;
-  }
-  return swaps;
+    const n = A.length
+    let swaps = 0
+    if (A[0] === 0) swaps++
+    for (let i = 1; i < n; i++) {
+        if (A[i] !== A[i - 1]) swaps++
+    }
+    return swaps
 }
 
-console.log(solve([0, 1, 0, 1]));
+console.log(solve([0, 1, 0, 1]))

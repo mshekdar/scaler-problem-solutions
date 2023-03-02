@@ -10,25 +10,25 @@
 // 3
 
 const solve = (A, B) => {
-  const n = A.length;
-  let sum = 0;
-  for (let i = 0; i < B; i++) {
-    sum += A[i];
-  }
-  let leastSum = sum;
-  let ans = 0;
-  let s = 1;
-  let e = B;
-  while (e < n) {
-    sum = sum + A[e] - A[s-1];
-    if (sum < leastSum) {
-      leastSum = sum;
-      ans = s;
+    const n = A.length
+    let sum = 0
+    for (let i = 0; i < B; i++) {
+        sum += A[i]
     }
-    s++;
-    e++;
-  }
-  return ans;
-};
+    let leastSum = sum
+    let ans = 0
+    let s = 1
+    let e = B
+    while (e < n) {
+        sum = sum + A[e] - A[s - 1]
+        if (sum < leastSum) {
+            leastSum = sum
+            ans = s
+        }
+        s++
+        e++
+    }
+    return ans
+}
 
-console.log(solve([3, 7, 90, 20, 10, 50, 40], 3));
+console.log(solve([3, 7, 90, 20, 10, 50, 40], 3))

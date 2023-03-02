@@ -38,14 +38,17 @@ Explanation 2:
  There is only one element in the array. So, cost of removing is 5. */
 
 const solve = (A) => {
-  const sorted = A.sort((a, b) => b - a);
-  let cost = sorted.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-  let totalCost = cost;
-  for (let i = 1; i < A.length; i++) {
-    cost = cost - A[i-1];
-    totalCost += cost;
-  }
-  return totalCost;
-};
+    const sorted = A.sort((a, b) => b - a)
+    let cost = sorted.reduce(
+        (accumulator, currentValue) => accumulator + currentValue,
+        0
+    )
+    let totalCost = cost
+    for (let i = 1; i < A.length; i++) {
+        cost = cost - A[i - 1]
+        totalCost += cost
+    }
+    return totalCost
+}
 
-console.log(solve([ 8, 0, 10 ]));
+console.log(solve([8, 0, 10]))
