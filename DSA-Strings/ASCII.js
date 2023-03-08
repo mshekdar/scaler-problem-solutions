@@ -7,10 +7,10 @@
 toggle('aA')
 
 function toggle(str) {
-    const chars = str.split('')
-    const diff = String.fromCharCode('a') - String.fromCharCode('A')
-    for (const char of chars) {
-        const charCode = char.charCodeAt(0)
-        console.log(charCode)
-    }
+  const chars = str.split('')
+  const diff = String.fromCharCode('a') - String.fromCharCode('A')
+  for (const char of chars) {
+    const charCode = char.charCodeAt(0)
+    console.log(charCode)
+  }
 }

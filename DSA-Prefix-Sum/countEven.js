@@ -32,30 +32,30 @@
 // [2, 1]
 
 function countEven(A, B) {
-    const n = A.length
-    const isEven = []
-    const countEven = []
-    const result = []
-    for (let i = 0; i < n; i++) {
-        isEven.push(Number(A[i]) % 2 === 0 ? 1 : 0)
-    }
-    countEven[0] = isEven[0]
-    for (let i = 1; i < n; i++) {
-        countEven[i] = countEven[i - 1] + isEven[i]
-    }
-    for (let i = 0; i < B.length; i++) {
-        const [l, r] = B[i]
-        if (l === 0) {
-            result.push(countEven[r])
-        } else result.push(countEven[r] - countEven[l - 1])
-    }
-    return result
+  const n = A.length
+  const isEven = []
+  const countEven = []
+  const result = []
+  for (let i = 0; i < n; i++) {
+    isEven.push(Number(A[i]) % 2 === 0 ? 1 : 0)
+  }
+  countEven[0] = isEven[0]
+  for (let i = 1; i < n; i++) {
+    countEven[i] = countEven[i - 1] + isEven[i]
+  }
+  for (let i = 0; i < B.length; i++) {
+    const [l, r] = B[i]
+    if (l === 0) {
+      result.push(countEven[r])
+    } else result.push(countEven[r] - countEven[l - 1])
+  }
+  return result
 }
 
 A = [1, 2, 3, 4, 5]
 B = [
-    [0, 2],
-    [1, 4],
+  [0, 2],
+  [1, 4],
 ]
 
 console.log(countEven(A, B))

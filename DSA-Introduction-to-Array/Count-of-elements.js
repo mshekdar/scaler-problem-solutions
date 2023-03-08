@@ -5,9 +5,9 @@
 // 2
 
 const solve = (A) => {
-    const max = Math.max(...A)
-    const countMax = A.filter((el) => el === max).length
-    return A.length - countMax
+  const max = Math.max(...A)
+  const countMax = A.filter((el) => el === max).length
+  return A.length - countMax
 }
 
 console.log(solve([3, 1, 2]))
