@@ -6,9 +6,9 @@ const check = (strArray, s, e) => {
   return false
 }
 
-const isPalindrom = (str) => {
+const isPalindrome = (str) => {
   const strArray = str.split('')
   return check(strArray, 0, strArray.length - 1)
 }
 
-console.log(isPalindrom('MADAM'))
+console.log(isPalindrome('MADAM'))

@@ -9,7 +9,7 @@ function createList(N) {
   }
   const head = newNode(1)
   let current = head
-  for (let i = 2; i < N; i++) {
+  for (let i = 2; i <= N; i++) {
     current.next = newNode(i)
     current = current.next
   }
@@ -37,6 +37,15 @@ const findSize = (h) => {
 
 let head = createList(5)
 
-// console.log(head.next.next.value);
+console.log(head);
 console.log('size ->', findSize(head))
-console.log('print ->', printList(head))
+console.log('print ->')
+console.log(printList(head))
+
+function printReverse(node) {
+  if (node === null) {
+      return
+  }
+  printReverse(node.next)
+  console.log(node.value)
+}
