@@ -37,14 +37,14 @@ const findSize = (h) => {
 
 let head = createList(5)
 
-console.log(head);
+console.log(head)
 console.log('size ->', findSize(head))
 console.log('print ->')
 console.log(printList(head))
 
 function printReverse(node) {
   if (node === null) {
-      return
+    return
   }
   printReverse(node.next)
   console.log(node.value)
