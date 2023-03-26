@@ -73,8 +73,8 @@ function sum(node) {
   return sum(node?.l) + sum(node?.r) + node?.v
 }
 
-console.log(height(test));
+console.log(height(test))
 function height(node) {
-  if(!node) return -1
+  if (!node) return -1
   return 1 + Math.max(height(node?.l), height(node?.r))
 }
