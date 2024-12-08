@@ -1,16 +1,35 @@
 // EVALUATE mathematical expression
 // Follows PEMDAS
 // Parentheses > Exponent > Multiply > Divide > Add > Subtract
-console.log(solve('((1+2*3)*(4-5))'))
+console.log(solve('((12+23*3)*(422-5))'))
 
 function solve(expression) {
   const result = getOperations(expression)
   return result
 }
 
+function getExpressionArr(expression) {
+  const input = expression.split("")
+  const expressionArr = []
+  let currentElement = "";
+  input.forEach(el => {
+    if(['^', '*', '/', '+', '-', "(", ")"].includes(el)) {
+      if(currentElement) { 
+        expressionArr.push(currentElement)
+        currentElement = "";
+      }
+      expressionArr.push(el);
+      return
+    }
+    currentElement = currentElement + el;
+  })
+  return expressionArr
+}
+
 function getOperations(expression) {
-  let expressionArr = expression.split('')
-  if (!isValid(expressionArr)) {
+  // let expressionArr = expression.split('')
+  let expressionArr = getExpressionArr(expression)
+  if (!validateBrackets(expressionArr)) {
     return 'Invalid expression'
   }
 
@@ -29,7 +48,7 @@ function getOperations(expression) {
       if (start != -1 && brackets === 0) {
         operations.push({
           type: 'expression',
-          value: expression.slice(start + 1, index),
+          value: expressionArr.slice(start + 1, index).join(""),
         })
         start = -1
         return
@@ -54,7 +73,7 @@ function getOperations(expression) {
   })
 }
 
-function isValid(expressionArr) {
+function validateBrackets(expressionArr) {
   let validator = 0
   let valid = true
   expressionArr.forEach((element) => {
@@ -64,4 +83,8 @@ function isValid(expressionArr) {
   })
   if (validator !== 0) return false
   return valid
+}
+
+function calculate(operations) {
+
 }
