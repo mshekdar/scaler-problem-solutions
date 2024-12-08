@@ -1,6 +1,10 @@
-// EVALUATE mathematical expression
-// Follows PEMDAS
+// Problem - Evaluate valid mathematical expression provided as string method
+// Operators - '^'(Exponent), '*'(Multiply), '/'(Divide), '+'(Add), '-'()Subtract
+// Nested brackets are allowed
+// Multiple digit numbers  are allowed
+// Follows PEMDAS - TODO
 // Parentheses > Exponent > Multiply > Divide > Add > Subtract
+
 console.log(solve('(25^2)+((200-50)/50)+7'))
 
 function solve(expression) {
