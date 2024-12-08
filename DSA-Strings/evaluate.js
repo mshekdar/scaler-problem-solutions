@@ -1,34 +1,16 @@
 // EVALUATE mathematical expression
 // Follows PEMDAS
 // Parentheses > Exponent > Multiply > Divide > Add > Subtract
-console.log(solve('((12+23*3)*(422-5))'))
+console.log(solve('(25^2)+((200-50)/50)+7'))
 
 function solve(expression) {
-  const result = getOperations(expression)
+  const result = calculate(getOperations(expression))
   return result
 }
 
-function getExpressionArr(expression) {
-  const input = expression.split("")
-  const expressionArr = []
-  let currentElement = "";
-  input.forEach(el => {
-    if(['^', '*', '/', '+', '-', "(", ")"].includes(el)) {
-      if(currentElement) { 
-        expressionArr.push(currentElement)
-        currentElement = "";
-      }
-      expressionArr.push(el);
-      return
-    }
-    currentElement = currentElement + el;
-  })
-  return expressionArr
-}
-
 function getOperations(expression) {
-  // let expressionArr = expression.split('')
-  let expressionArr = getExpressionArr(expression)
+  const expressionArr = getExpressionArr(expression)
+  
   if (!validateBrackets(expressionArr)) {
     return 'Invalid expression'
   }
@@ -48,7 +30,7 @@ function getOperations(expression) {
       if (start != -1 && brackets === 0) {
         operations.push({
           type: 'expression',
-          value: expressionArr.slice(start + 1, index).join(""),
+          expression: expressionArr.slice(start + 1, index).join(""),
         })
         start = -1
         return
@@ -65,12 +47,35 @@ function getOperations(expression) {
     }
   })
 
-  return operations.map((el) => {
-    if (el.type === 'expression') {
-      return { ...el, operations: getOperations(el.value) }
+  return operations.map((operation) => {
+    if (operation.type === 'expression') {
+      const operationsPopulated = { ...operation, operations: getOperations(operation.expression) }
+      const valuePopulated = {...operationsPopulated, value: calculate(operationsPopulated.operations), type: "number", previousType: "expression" }
+      return valuePopulated
     }
-    return el
+    return operation
   })
+}
+
+function getExpressionArr(expression) {
+  const input = expression.split("")
+  const expressionArr = []
+  let currentElement = "";
+  input.forEach(el => {
+    if(['^', '*', '/', '+', '-', "(", ")"].includes(el)) {
+      if(currentElement) { 
+        expressionArr.push(currentElement)
+        currentElement = "";
+      }
+      expressionArr.push(el);
+      return
+    }
+    currentElement = currentElement + el;
+  })
+  if(currentElement) {
+    expressionArr.push(currentElement)
+  }
+  return expressionArr
 }
 
 function validateBrackets(expressionArr) {
@@ -86,5 +91,35 @@ function validateBrackets(expressionArr) {
 }
 
 function calculate(operations) {
-
+  let result = 0;
+  let lastOperator = "";
+  operations.forEach((operation, index) => {
+    if(operation.type === "operator") {
+      lastOperator = operation.value
+    }
+    if(operation.type === "number") {
+      result = evaluate(result, +operation.value, lastOperator)
+      lastOperator = ""
+    }
+  })
+  return result
 }
+
+function evaluate(a, b, operator) {
+  switch (operator) {
+    case "^":
+      return a**b
+    case "*":
+      return a*b
+    case "/":
+      return a/b
+    case "+":
+      return a+b
+    case "-":
+      return a-b
+  
+    default:
+      return a+b;
+  }
+}
+  
